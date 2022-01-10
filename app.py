@@ -3,6 +3,7 @@ from flask import Flask,render_template,request
 import numpy as np
 import joblib
 app = Flask(__name__)
+app.config["BUNDLE_ERRORS"] = False
 
 def init():
     # load the saved model.
