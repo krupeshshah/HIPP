@@ -61,60 +61,6 @@ def submit():
         print(e)
         return 'Calculation Error'+str(e), 500
         
-    # result = ''
-    # if total_score<50:
-    #     result='fail'
-    # else:
-    #     result='success'
-    # return redirect(url_for(result,score=total_score))  
-
-# @app.route('/success/<int:score>')
-# def success(score):
-#     return "<html><body><h1>The Reult is passed</h1></body></html>"+ score
-
-
-# @app.route('/fail/<int:score>')
-# def fail(score):
-#     return "The Person has failed and the marks is "+ str(score)
-
-# ### Result checker
-# @app.route('/results/<int:marks>')
-# def results(marks):
-#     result=""
-#     if marks<50:
-#         result='fail'
-#     else:
-#         result='success'
-#     return redirect(url_for(result,score=marks))
-
-
-# # @app.route('/')
-# # def welcome():
-# #     return render_template('index.html')
-
-# # @app.route('/submit',methods=['POST','GET'])
-# # def submit():
-# #     return ""
-
-
-# # @app.route('/success/<int:score>')
-# # def success(score):
-# #     return "congretulation you pass and your score is "+ str(score)
-     
-# # @app.route('/fail/<int:score>')
-# # def fail(score):
-# #     return "you failed and your score is "+ str(score)
-
-# # @app.route('/results/<int:score>')
-# # def results(score):
-# #     result = ''
-# #     if score<50:
-# #         result='success'
-# #     else:
-# #         result='fail'
-
-# #     return redirect(url_for(result,score=score))
-
 if __name__=='__main__':
     init()
     app.run(debug=True)

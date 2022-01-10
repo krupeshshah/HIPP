@@ -1,1 +1,1 @@
-web: gunicorn PFlask2:PFlask2
+web: gunicorn app:app
