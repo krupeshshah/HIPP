@@ -18,7 +18,7 @@ def welcome():
 @app.route('/predict', methods=['GET'])
 def predict():
     try:
-        # Get parameters for temperature
+        # Get parameters for temperature test
         age = float(request.args.get('age'))
         # Get parameters for humidity
         sex = float(request.args.get('sex'))
