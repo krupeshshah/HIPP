@@ -33,10 +33,9 @@ def predict():
 
         # Predict Apparent temperature
         # Same order as the x_train dataframe
-        features = [np.array([age, sex,bmi,children,smoker,region])]
+        features = [np.array([age, sex, bmi, children, smoker, region])]
         prediction = regressor.predict(features)
-
-        return 'apparent_price' +str(prediction)
+        return 'apparent_price' + str(prediction)
     except Exception as e:
         print(e)
         return 'Calculation Error'+str(e), 500
@@ -47,17 +46,40 @@ def submit():
     try:
         if request.method == 'POST':
             age = int(request.form['age'])
-            sex = int(request.form['sex'])
+            sex = request.form['sex']
+            if sex == "female":
+                sex = "1"
+            elif sex == "male":
+                sex = "0"
+            else:
+                return 'Input Error in Sex!' + sex
             bmi = float(request.form['bmi'])
             children = int(request.form['children'])
-            smoker = int(request.form['smoker'])
-            region = int(request.form['region'])
+            smoker = request.form['smoker']
+            if smoker == "no":
+                smoker = "1"
+            elif smoker == "yes":
+                smoker = "0"
+            else:
+                return 'Input Error!'
+            region = request.form['region']
+            if region == "southeast":
+                region = "0"
+            elif region == "southwest":
+                region = "1"
+            elif region == "northeast":
+                region = "2"
+            elif region == "northwest":
+                region = "3"
+            else:
+                return 'Input Error!'
             # Predict Apparent temperature
             # Same order as the x_train dataframe
             features = [np.array([age, sex,bmi,children,smoker,region])]
             prediction = regressor.predict(features)
             finalprice = np.round(prediction, 2)
-            return render_template('index.html',price = finalprice)
+            formatted_float = "${:,.2f}".format(finalprice[0])
+            return render_template('index.html',price = str(formatted_float))
     except Exception as e:
         print(e)
         return 'Calculation Error'+str(e), 500
