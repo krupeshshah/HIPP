@@ -79,6 +79,7 @@ def submit():
             features = [np.array([age, sex,bmi,children,smoker,region])]
             print("1")
             print(features)
+            print(regressor)
             prediction = regressor.predict(features)
             finalprice = np.round(prediction, 2)
             formatted_float = "${:,.2f}".format(finalprice[0])
