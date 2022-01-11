@@ -8,6 +8,7 @@ app.config["BUNDLE_ERRORS"] = False
 def init():
     # load the saved model.
     global regressor
+    # regressor = joblib.load("insurence.pkl")
     regressor = joblib.load("insurence.pkl")
 
 @app.route('/')
@@ -76,6 +77,8 @@ def submit():
             # Predict Apparent temperature
             # Same order as the x_train dataframe
             features = [np.array([age, sex,bmi,children,smoker,region])]
+            print("1")
+            print(features)
             prediction = regressor.predict(features)
             finalprice = np.round(prediction, 2)
             formatted_float = "${:,.2f}".format(finalprice[0])
