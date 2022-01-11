@@ -13,7 +13,7 @@ app.config["BUNDLE_ERRORS"] = False
 @app.route('/')
 def welcome():
     return render_template('index.html')
-    
+
 @app.route('/submit',methods=['POST','GET'])
 def submit():
     total_score=0
@@ -52,9 +52,9 @@ def submit():
             features = [np.array([age, sex,bmi,children,smoker,region])]
             print("1")
             print(features)
-            regressor = joblib.load("insurence.pkl")
-            print(regressor)
-            prediction = regressor.predict(features)
+            insurence = joblib.load("insurence.pkl")
+            print(joblib.load("insurence.pkl"))
+            prediction = insurence.predict(features)
             finalprice = np.round(prediction, 2)
             formatted_float = "${:,.2f}".format(finalprice[0])
             return render_template('index.html',price = str(formatted_float))
