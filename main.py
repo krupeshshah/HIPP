@@ -1,9 +1,12 @@
 from logging import exception
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request, url_for, redirect
 import numpy as np
 import joblib
+from dashboard import dashboard
+
 app = Flask(__name__)
 app.config["BUNDLE_ERRORS"] = False
+app.register_blueprint(dashboard,url_prefix="/Dashboard")
 
 # def init():
 #     # load the saved model.
@@ -12,7 +15,7 @@ app.config["BUNDLE_ERRORS"] = False
 
 @app.route('/')
 def welcome():
-    return render_template('index.html')
+    return render_template('prediction.html')
 
 @app.route('/submit',methods=['POST','GET'])
 def submit():
@@ -52,16 +55,41 @@ def submit():
             features = [np.array([age, sex,bmi,children,smoker,region])]
             print("1")
             print(features)
-            insurence = joblib.load("insurence.pkl")
-            print(joblib.load("insurence.pkl"))
+            insurence = joblib.load("./insurence.pkl")
             prediction = insurence.predict(features)
             finalprice = np.round(prediction, 2)
             formatted_float = "${:,.2f}".format(finalprice[0])
-            return render_template('index.html',price = str(formatted_float))
+            formdata = request.form
+            print(formdata)
+            return render_template('predictionresult.html', UserDetails = formdata, Price = formatted_float)
     except Exception as e:
         print(e)
         return 'Calculation Error'+str(e), 500
-        
+    
+@app.route('/Dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
+@app.route('/ageDistribution')
+def ageDistribution():
+    return render_template('ageDistribution.html')
+
+@app.route('/bmiDistribution')
+def bmidistribution():
+    return render_template('bmiDistribution.html')
+
+@app.route('/sexDistribution')
+def sexDistribution():
+    return render_template('sexDistribution.html')    
+    
+@app.route('/children')
+def children():
+    return render_template('children.html')    
+
+@app.route('/Prediction')
+def prediction():
+    return render_template('prediction.html')
+
 if __name__=='__main__':
     # init()
     app.run(debug=True)

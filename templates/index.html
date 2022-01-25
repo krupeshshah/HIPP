@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>HIPP</title>
+  
+  <title>{% block title %} {% endblock %}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- <link rel="icon" href="https://cdn.icon-icons.com/images/favicon.ico" type="image/x-icon"> -->
@@ -18,80 +19,47 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js" integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-<div class="container" style="padding:3%;">
-  <h1 style="color: #337ab7; text-align: center;">Health Insurance Price Prediction Form</h1>
-  <br/>
-  <form id="myForm" name="myForm" action="/submit" onsubmit="return validateForm()" method='post'>
-    <table width=100%>
-      <tr>
-        <td><label for="age">Age</label></td>
-        <td></td><td></td><td></td>
-        <td><input type="number" class="form-control" id="txtage" name="age" placeholder="Enter age" required></td>
-      </tr>
-      <tr>
-        <td><label for="sex">Sex:</label></td>
-        <td></td><td></td><td></td>
-        <td><div class="custom-control custom-radio"><input type="radio" id="radioMale" name="sex" id="male" value="male" class="custom-control-input" checked><label class="custom-control-label" for="radioMale">Male</label></div>
-        <div class="custom-control custom-radio"><input type="radio" id="radioFemale" name="sex" id="female" value="female" class="custom-control-input"><label class="custom-control-label" for="radioFemale">Female</label>
-        </div></td>
-      </tr>
-      <tr>
-        <td><label for="bmi ">BMI:</label></td>
-        <td></td><td></td><td></td>
-        <td><input type="text" class="form-control" id="txtbmi" pattern="[0-9]+" name="bmi" placeholder="Enter bmi" required></td>
-      </tr>
-      <tr>
-        <td><label for="children">Children:</label></td>
-        <td></td><td></td><td></td>
-        <td><input type="number" class="form-control" id="children" name="children"  placeholder="Enter no. of children" pattern="[0-9]+" required></td>
-      </tr>
-      <tr>
-        <td><label for="smoker ">Smoker:</label></td>
-        <td></td><td></td><td></td>
-        <td><div class="custom-control custom-radio"><input type="radio" id="radioNo" name="smoker" id="no" value="no" class="custom-control-input" checked><label class="custom-control-label" for="radioNo">No</label></div>
-          <div class="custom-control custom-radio"><input type="radio" id="radioYes" name="smoker" id="yes" value="yes" class="custom-control-input"><label class="custom-control-label" for="radioYes">Yes</label>
-        </div></td>
-      </tr>
-      <tr>
-        <td><label for="region">Region:</label></td>
-        <td></td><td></td><td></td>
-        <td><select name="region" class="custom-select">
-          <option value="southeast">South East</option>
-          <option value="southwest">South West</option>
-          <option value="northeast">North East</option>
-          <option value="northwest">North West</option>
-        </select></td>
-      </tr>
-    </table>
-    <h1>{{price}} </h1>
-    <input type="submit" value="Predict the Insurence Price" style="width:100%; color: #fff; background-color: #337ab7; border: none;font-size: 20px;">
-  </form>
-</div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">HIPP</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <!-- <li class="nav-item active">
+          <a class="nav-link" href="/Dashboard">Dashboard <span class="sr-only">(current)</span></a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="/Prediction">Prediction</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Visulization
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/bmiDistribution">BMI Distribution</a>
+            <a class="dropdown-item" href="/sexDistribution">Sex Distribution</a>
+            <a class="dropdown-item" href="/ageDistribution">Age Distribution</a>
+            <a class="dropdown-item" href="/children">Children</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li> -->
+      </ul>
+      <!-- <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form> -->
+    </div>
+  </nav>
+  {% block content %} {% endblock %}
 </body>
-
-<script type="text/javascript">
-  function validateForm() {
-    let age = document.forms["myForm"]["age"].value;
-    let sex = document.forms["myForm"]["sex"].value;
-    let bmi = document.forms["myForm"]["bmi"].value;
-    let children = document.forms["myForm"]["children"].value;
-    let smoker = document.forms["myForm"]["smoker"].value;
-    let region = document.forms["myForm"]["region"].value;
-    if (!Number.isInteger(age)) {
-      Swal.fire({title: 'Error!', text: 'Age must be a number!', icon: 'error', confirmButtonText: 'OK'})
-      return false;
-    }
-    else if (sex != "male" || sex != "female") {
-      Swal.fire({title: 'Error!', text: 'Sex must be male or female!', icon: 'error', confirmButtonText: 'OK'})
-      return false;
-    }
-    else if (smoker != "yes" || smoker != "no") {
-      Swal.fire({title: 'Error!', text: 'Smoker must be yes or no!', icon: 'error', confirmButtonText: 'OK'})
-      return false;
-    }
-  }
-</script>
+{% block script %} {% endblock %}
 </html>

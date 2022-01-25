@@ -1,0 +1,16 @@
+chartpython/__init__.py
+chartpython/AgeDistribution.py
+chartpython/bmiDistribution.py
+chartpython/dashboard.py
+chartpython/readcsv.py
+chartpython/sexDistribution.py
+chartpython/smoker.py
+__pycache__/main.cpython-38.pyc
+__pycache__/dashboard.cpython-310.pyc
+__pycache__/dashboard.cpython-38.pyc
+__pycache__/main.cpython-38.pyc
+__pycache__/main.cpython-38.pyc
+chartpython/__pycache__/__init__.cpython-310.pyc
+__pycache__/main.cpython-38.pyc
+chartpython/__pycache__/readcsv.cpython-310.pyc
+static/builtin/insurance.csv

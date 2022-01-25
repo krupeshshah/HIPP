@@ -1,0 +1,99 @@
+{% extends "index.html" %}
+{% block title %} User Details  {% endblock %}
+{% block content %} 
+<div class="container" style="padding:3%;">
+  <h1 style="color: #337ab7; text-align: center;">Health Insurance Price Prediction Form</h1>
+  <br/>
+  <form id="myForm" name="myForm" action="/submit" onsubmit="return validateForm()" method='post'>
+    <table width=100%>
+      <tr>
+        <td><label for="age">Age</label></td>
+        <td></td><td></td><td></td>
+        <td><input type="number" class="form-control" id="txtage" name="age" placeholder="Enter age" required></td>
+      </tr>
+      <tr>
+        <td><label for="sex">Sex:</label></td>
+        <td></td><td></td><td></td>
+        <td><div class="custom-control custom-radio"><input type="radio" id="radioMale" name="sex" id="male" value="male" class="custom-control-input" checked><label class="custom-control-label" for="radioMale">Male</label></div>
+        <div class="custom-control custom-radio"><input type="radio" id="radioFemale" name="sex" id="female" value="female" class="custom-control-input"><label class="custom-control-label" for="radioFemale">Female</label>
+        </div></td>
+      </tr>
+      <tr>
+        <td><label for="bmi ">BMI:</label></td>
+        <td></td><td></td><td></td>
+        <td><input type="number" class="form-control" id="txtbmi" name="bmi" placeholder="Enter bmi" step="any" required></td>
+      </tr>
+      <tr>
+        <td><label for="children">Children:</label></td>
+        <td></td><td></td><td></td>
+        <td><input type="number" class="form-control" id="children" name="children"  placeholder="Enter no. of children" pattern="[0-9]+" required></td>
+      </tr>
+      <tr>
+        <td><label for="smoker ">Smoker:</label></td>
+        <td></td><td></td><td></td>
+        <td><div class="custom-control custom-radio"><input type="radio" id="radioNo" name="smoker" id="no" value="no" class="custom-control-input" checked><label class="custom-control-label" for="radioNo">No</label></div>
+          <div class="custom-control custom-radio"><input type="radio" id="radioYes" name="smoker" id="yes" value="yes" class="custom-control-input"><label class="custom-control-label" for="radioYes">Yes</label>
+        </div></td>
+      </tr>
+      <tr>
+        <td><label for="region">Region:</label></td>
+        <td></td><td></td><td></td>
+        <td><select name="region" class="custom-select">
+          <option value="southeast">South East</option>
+          <option value="southwest">South West</option>
+          <option value="northeast">North East</option>
+          <option value="northwest">North West</option>
+        </select></td>
+      </tr>
+    </table>
+    <input type="submit" value="Predict the Insurence Price" style="width:100%; color: #fff; background-color: #337ab7; border: none;font-size: 20px;">
+  </form>
+</div>
+{% endblock %}
+
+{% block script %} 
+<script type="text/javascript">
+  // $('#txtbmi').keyup(function(e) {
+  //   var regex = /^\d+(\.\d{0,2})?$/g;
+  //   if (!regex.test(this.value)) {
+  //       this.value = '';
+  //   }
+  // });
+  function validateForm() {
+    let age = document.forms["myForm"]["age"].value;
+    let sex = document.forms["myForm"]["sex"].value;
+    let bmi = document.forms["myForm"]["bmi"].value;
+    let children = document.forms["myForm"]["children"].value;
+    let smoker = document.forms["myForm"]["smoker"].value;
+    let region = document.forms["myForm"]["region"].value;
+    if (!Number.isInteger(age)) {
+      Swal.fire({title: 'Error!', text: 'Age must be a number!', icon: 'error', confirmButtonText: 'OK'})
+      return false;
+    }
+    else if (sex != "male" || sex != "female") {
+      Swal.fire({title: 'Error!', text: 'Sex must be male or female!', icon: 'error', confirmButtonText: 'OK'})
+      return false;
+    }
+    else if (smoker != "yes" || smoker != "no") {
+      Swal.fire({title: 'Error!', text: 'Smoker must be yes or no!', icon: 'error', confirmButtonText: 'OK'})
+      return false;
+    }
+  }
+
+  $("#search_form_input").keyup(function(){
+    var text = $(this).val();
+
+    $.ajax({
+      url: "/submit",
+      type: "POST",
+      data: {jsdata: text},
+      success: function(response) {
+        $("#place_for_suggestions").html(response);
+      },
+      error: function(xhr) {
+        //Do Something to handle error
+      }
+    });
+});
+</script>
+{% endblock %}

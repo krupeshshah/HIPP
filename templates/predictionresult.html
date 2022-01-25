@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+{% block title %} Prediction {% endblock %}
+{% block content %} 
+<div class="container" style="padding:3%;">
+  <h1 style="color: #337ab7; text-align: center;">Health Insurance Price Prediction</h1>
+  <br/>
+  <form id="myForm" name="myForm" action="/Prediction" method='post'>
+    <table width=100% class="table table-bordered">
+    {% for key, value in UserDetails.items() %}
+        <tr>
+            <td><label for="age" class="text-uppercase">{{ key }}</label></td>
+            <td><label for="age" class="text-uppercase">{{ value }}</label></td>
+        </tr>
+    {% endfor %}
+        <tr Class="table-success">
+            <td><label for="prediction" class="text-uppercase font-weight-bold">Price</label></td>
+            <td><label for="prediction " class="text-uppercase font-weight-bold">{{Price}}</label></td>
+        </tr>
+    </table>
+    <a class="nav-link btn btn-info"  href="/Prediction" role="button">Make New Prediction</a>
+    <!-- <input type="button" oncl style="width:100%; color: #fff; background-color: #337ab7; border: none;font-size: 20px;"> -->
+  </form>
+</div>
+{% endblock %}
+
+{% block script %} 
+{% endblock %}
