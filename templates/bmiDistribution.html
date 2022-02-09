@@ -1,39 +1,14 @@
-{% extends "index.html" %}
-{% block title %} Bmi Distribution  {% endblock %}
+{% extends "VisulizationReport.html" %}
 {% block content %} 
 <div class="container">
     <div class="row">
         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-            <div class="card card-style mb-2">
-                <div class="card-body">
-                    <div class="chart-container" style="position: relative;">
-                        <figure class="figure">
-                            <img src="/Dashboard/bmiDistribution" alt="BMI Distribution">
-                        </figure>
-                    </div>
-                </div>
+            <div class="chart-container" style="position: relative;">
+                <figure class="figure">
+                    <img src="/Dashboard/bmiDistribution" style="position: absolute; margin-left: 20%; margin-top: 4%;" alt="BMI Distribution">
+                </figure>
             </div>
         </div>
-    </div>
-    <div class="row">
-      ...
     </div>
 </div>
-<!-- <div class="col-xs-12 col-sm-12 col-md-12">
-    <div class="row-xs-12 row-sm-12 row-md-12">
-        
-    </div>
-</div> -->
-<!-- <div class="col-xs-6 col-sm-6 col-md-6">
-    <div class="card card-style mb-2">
-        <div class="card-body">
-            <div class="chart-container" style="position: relative;">
-                <img src="/Dashboard/smoker" alt="Smokers">
-            </div>
-        </div>
-    </div>
-</div> -->
-{% endblock %}
-
-{% block script %} 
 {% endblock %}

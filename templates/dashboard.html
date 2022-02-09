@@ -1,17 +1,38 @@
 {% extends "index.html" %}
 {% block title %} Dashboard  {% endblock %}
 {% block content %} 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="card card-style mb-2">
-                <div class="card-body">
-                    <div class="chart-container" style="position: relative;">
-                        <figure class="figure">
-                            <img src="/Dashboard/all" alt="Age">
-                        </figure>
+{% block style %} 
+<style>
+.watermarked {
+  position: relative;
+}
+
+.watermarked:after {
+    content: "Visulization Report";
+    white-space: nowrap;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 4px;
+    left: 669px;
+    opacity: 0.7;
+    z-index: 999;
+    color: black;
+    font-weight: bolder;
+    font-size: larger;
+}
+</style>
+{% endblock %}
+<div class="container" style="margin: 0% !important; padding: 0% !important;">
+    <div class="row ">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin: 0% !important; padding: 0% !important;">
+            <div class="chart-container" >
+                <figure class="figure">
+                    <div class="watermarked">
+                        <img src="/Dashboard/all" style="position: fixed; margin-left: 22px;" alt="Age" height="90%" width="99%">
                     </div>
-                </div>
+                </figure>
             </div>
         </div>
         <!-- <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">

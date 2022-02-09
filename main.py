@@ -15,7 +15,7 @@ app.register_blueprint(dashboard,url_prefix="/Dashboard")
 
 @app.route('/')
 def welcome():
-    return render_template('prediction.html')
+    return render_template('dashboard.html')
 
 @app.route('/submit',methods=['POST','GET'])
 def submit():
@@ -58,6 +58,10 @@ def submit():
             insurence = joblib.load("./insurence.pkl")
             prediction = insurence.predict(features)
             finalprice = np.round(prediction, 2)
+            print(finalprice)
+            if finalprice < 0:
+                print(finalprice)
+                finalprice = finalprice * -1
             formatted_float = "${:,.2f}".format(finalprice[0])
             formdata = request.form
             print(formdata)
@@ -80,7 +84,11 @@ def bmidistribution():
 
 @app.route('/sexDistribution')
 def sexDistribution():
-    return render_template('sexDistribution.html')    
+    return render_template('sexDistribution.html') 
+
+@app.route('/region')
+def region():
+    return render_template('regionDistribution.html')    
     
 @app.route('/children')
 def children():

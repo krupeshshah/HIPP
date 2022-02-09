@@ -1,22 +1,15 @@
-{% extends "index.html" %}
+{% extends "VisulizationReport.html" %}
 {% block title %} Age Distribution {% endblock %}
 {% block content %} 
 <div class="container">
     <div class="row">
         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-            <div class="card card-style mb-2">
-                <div class="card-body">
-                    <div class="chart-container" style="position: relative;">
-                        <figure class="figure">
-                            <img src="/Dashboard/ageDistribution" alt="Age Distribution">
-                        </figure>
-                    </div>
-                </div>
+            <div class="chart-container" style="position: relative;">
+                <figure class="figure">
+                    <img src="/Dashboard/ageDistribution" style="position: absolute; margin-left: 20%; margin-top: 4%;" alt="Age Distribution">
+                </figure>
             </div>
         </div>
-    </div>
-    <div class="row">
-      ...
     </div>
 </div>
 {% endblock %}

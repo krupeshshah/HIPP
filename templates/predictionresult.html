@@ -8,16 +8,16 @@
     <table width=100% class="table table-bordered">
     {% for key, value in UserDetails.items() %}
         <tr>
-            <td><label for="age" class="text-uppercase">{{ key }}</label></td>
-            <td><label for="age" class="text-uppercase">{{ value }}</label></td>
+            <td><label for="age" class="text-capitalize">{{ key }}</label></td>
+            <td><label for="age" class="text-capitalize">{{ value }}</label></td>
         </tr>
     {% endfor %}
-        <tr Class="table-success">
-            <td><label for="prediction" class="text-uppercase font-weight-bold">Price</label></td>
-            <td><label for="prediction " class="text-uppercase font-weight-bold">{{Price}}</label></td>
+        <tr Class="table-success" style="color: black;">
+            <td><label for="prediction" class="text-capitalize font-weight-bold">Price</label></td>
+            <td><label for="prediction " class="text-capitalize font-weight-bold">{{Price}}</label></td>
         </tr>
     </table>
-    <a class="nav-link btn btn-info"  href="/Prediction" role="button">Make New Prediction</a>
+    <a class="nav-link btn btn-info"  href="/Prediction" role="button" style="width:100%; color: #fff; background-color: #337ab7; border: none;font-size: larger;">Make New Prediction</a>
     <!-- <input type="button" oncl style="width:100%; color: #fff; background-color: #337ab7; border: none;font-size: 20px;"> -->
   </form>
 </div>
